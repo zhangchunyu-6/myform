@@ -16,3 +16,15 @@ Route::get('/', function () {
 });
 
 Route::any('/char','StudentController@char');
+Route::get('/index','StudentController@index');
+
+
+
+Route::get('/login',function(){
+    return view('login');
+});
+Route::get('/wechar_login','LoginController@wechar_login');
+Route::get('/wechar_code','LoginController@code');
+Route::get('/wechar_index','LoginController@index');
+
+

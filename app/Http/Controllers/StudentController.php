@@ -32,5 +32,21 @@ class StudentController extends Controller
 
 		return $wechar_access_token;
 	}
-   
+
+	public function index()
+	{
+		$res = file_get_contents('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WECHAR_APPID').'&secret='.env('WECHAR_SECRET'));
+		$token=$this->access_token();
+		$openid=file_get_contents();
+		$result=json_decode($openid,true);
+		$openid_list=[];
+
+		$foreach($result['data']['openid'] as $v)
+		{
+			$user_info=file_get_contents('')
+		}
+
+		//dd($res);
+		
+	}
 }
