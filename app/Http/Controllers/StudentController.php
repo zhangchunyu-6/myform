@@ -4,49 +4,51 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use App\Tools\Tools;
 class StudentController extends Controller
 {
 
 
-	public function char()
-	{
-	  $access_token = $this->get_access_token();
-	  echo $access_token;
-	}
+	
 
-	public function get_access_token()
-	{
-		$key="mechar_access_token";
-		if(Cache::has($key)){
-			//取缓存
-			//return "从缓存中获取信息";
-			$wechar_access_token=Cache::get($key);
-		}else{
-			//取不到 调接口
-			$res = file_get_contents('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WECHAR_APPID').'&secret='.env('WECHAR_SECRET'));
-			$result=json_decode($res,1);
-			//dd($result);
-			Cache::put($key,$result['access_token'],$result['expires_in']);
-			$wechar_access_token =$result['access_token'];
-		}
+	
 
-		return $wechar_access_token;
-	}
-
-	public function index()
+	public function index(Tools $tools)
 	{
 		$res = file_get_contents('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WECHAR_APPID').'&secret='.env('WECHAR_SECRET'));
-		$token=$this->access_token();
-		$openid=file_get_contents();
-		$result=json_decode($openid,true);
+		
+		$result=json_decode($res);
+
+		//获取token
+		$token=$tools->get_access_token();
+	    //dd($token);
+		//获取openid 
+		$openid=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/get?access_token='.$token.'&next_openid=');
+		//dd($openid);
+		$re=json_decode($openid,1);
+		
+		
 		$openid_list=[];
+	
 
-		$foreach($result['data']['openid'] as $v)
-		{
-			$user_info=file_get_contents('')
-		}
+        foreach ($re['data']['openid'] as $v)
 
-		//dd($res);
+        {
+            $user_info=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$tools->get_access_token().'&openid='.$v.'&lang=zh_CN');
+
+            $res=json_decode($user_info,1);
+
+            dd($res);
+
+			$openid_list[]=$res;
+	
+        }
+		//dd($openid_list);
+		return view('wechar.user_list',['list'=>$openid_list]);
 		
 	}
+
+	
+	
+	
 }

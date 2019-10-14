@@ -16,9 +16,19 @@ class LoginController extends Controller
         
     }
 
+    /* 
+     获取code 然后用code换取token;
+
+    */
     public function code(Request $request)
     {
         $code=Request()->all();
-        dd($code);
+        $url='https://api.weixin.qq.com/sns/oauth2/access_token?appid='.env('WECHAR_APPID').'&secret='.env('WECHAR_SECRET').'&code='.$code['code'].'&grant_type=authorization_code';
+
+        $re=file_get_contents($url);
+        //必须携带第二个参数
+          $result=json_decode($re,true);
+          echo "<pre>";
+        print_r($result); 
     }
 }
