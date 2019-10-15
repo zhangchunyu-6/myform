@@ -17,6 +17,17 @@ class EventController extends Controller
         $xml_obj = simplexml_load_string($info,'SimpleXMLElement',LIBXML_NOCDATA);
 
         $xml_arr = (array)$xml_obj;
-
-    }                                                                                                                                    
+            if($xml_arr['MsgType']=='event' && $xml_arr['Event']=="subscribe"){
+                $wechar_user = $tools->get_access_token($xml_arr['FromUserName']);
+                $arr='你好'.$wechar_user['nickname'].',欢迎关注我!有福利';
+                echo "<xml>
+                <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
+                <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
+                <CreateTime>".$xml_arr['CreateTime']."</CreateTime>
+                <MsgType><![CDATA['']]></MsgType>
+                <Content><![CDATA[".$arr."]]></Content>
+              </xml>";
+            }
+     }     
+                                                                                                                                       
 }
