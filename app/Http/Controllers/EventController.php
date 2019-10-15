@@ -25,20 +25,21 @@ class EventController extends Controller
                 <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
                 <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
                 <CreateTime>".$xml_arr['CreateTime']."</CreateTime>
-                <MsgType><![CDATA['text']]></MsgType>
+                <MsgType><![CDATA[".$xml_arr['MsgType']."]]></MsgType>
                 <Content><![CDATA[".$arr."]]></Content>
               </xml>";
             }
             //普通的信息发送
-            if($xml_arr['MsType']=='text'){
-                $msg ="您好欢迎来到啥也不是公众号 感谢您的支持";
+            if($xml_arr['MsgType']=='text'){
+                $msg ="您好!欢迎来到啥也不是公众号, 感谢您的支持!!";
                 echo "<xml>
                 <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
                 <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
-                <CreateTime>".$xml_arr['CreateTime']."</CreateTime>
-                <MsgType><![CDATA[".$xml_arr['MsgType']."]]></MsgType>
-                <Content><![CDATA[".$msg."]]></Content>
-                </xml>";
+                <CreateTime>12345678</CreateTime>
+                <MsgType><![CDATA[text]]></MsgType>
+                <Content><![CDATA[".$msg."]></Content>
+              </xml>";
+              
             }
      }     
                                                                                                                                        
