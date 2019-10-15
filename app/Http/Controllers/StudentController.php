@@ -9,44 +9,52 @@ class StudentController extends Controller
 {
 
 
-	
+	public $tools;
+    public function __construct(Tools $tools)
+    {
+        $this->tools = $tools;
+    }
 
 	
 
-	public function index(Tools $tools)
-	{
-		$res = file_get_contents('https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WECHAR_APPID').'&secret='.env('WECHAR_SECRET'));
-		
-		$result=json_decode($res);
+	 public function index(Request $request,Tools $tools)
 
-		//获取token
-		$token=$tools->get_access_token();
-	    //dd($token);
-		//获取openid 
-		$openid=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/get?access_token='.$token.'&next_openid=');
-		//dd($openid);
-		$re=json_decode($openid,1);
-		
-		
-		$openid_list=[];
-	
+    {
+
+		$token=$this->tools->get_access_token();
+		//dd($token);
+
+//        获取openid
+
+        $openid=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/get?access_token='.$token.'&next_openid=');
+
+        $re=json_decode($openid,1);
+
+    // dd($re);
+
+        $openid_list=[];
 
         foreach ($re['data']['openid'] as $v)
 
         {
-            $user_info=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$tools->get_access_token().'&openid='.$v.'&lang=zh_CN');
+
+//            获取用户基本信息
+
+            $user_info=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->tools->get_access_token().'&openid='.$v.'&lang=zh_CN');
 
             $res=json_decode($user_info,1);
 
-            dd($res);
+//            dd($res);
 
-			$openid_list[]=$res;
-	
+            $openid_list[]=$res;
+
         }
-		//dd($openid_list);
-		return view('wechar.user_list',['list'=>$openid_list]);
-		
-	}
+
+      // dd($openid_list);
+
+        return view('wechar.user_list_do',['list'=>$openid_list]);
+
+    }
 
 	
 	

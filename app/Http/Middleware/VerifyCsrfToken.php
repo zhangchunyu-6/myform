@@ -20,5 +20,6 @@ class VerifyCsrfToken extends Middleware
      */
     protected $except = [
         '/event',
+        '116.62.48.100/event'
     ];
 }
