@@ -17,6 +17,7 @@ class EventController extends Controller
         $xml_obj = simplexml_load_string($info,'SimpleXMLElement',LIBXML_NOCDATA);
 
         $xml_arr = (array)$xml_obj;
+     
             if($xml_arr['MsgType']=='event' && $xml_arr['Event']=="subscribe"){
                 $wechar_user = $tools->get_wechar_user($xml_arr['FromUserName']);
                 
@@ -31,15 +32,15 @@ class EventController extends Controller
             }
             //普通的信息发送
             if($xml_arr['MsgType']=='text'){
-                $msg ="您好!欢迎来到啥也不是公众号, 感谢您的支持!!";
-                echo "<xml>
+                $cod ="欢迎来到我的公众号";
+                
+          echo"<xml>
                 <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
                 <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
-                <CreateTime>12345678</CreateTime>
+                <CreateTime>".$xml_arr['CreateTime']."</CreateTime>
                 <MsgType><![CDATA[text]]></MsgType>
-                <Content><![CDATA[".$msg."]></Content>
+                <Content><![CDATA[".$cod."]]></Content>
               </xml>";
-              
             }
      }     
                                                                                                                                        
