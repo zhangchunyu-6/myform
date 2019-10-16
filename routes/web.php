@@ -37,8 +37,12 @@ Route::any('/tag_edit','TagController@Tag_edit');
 Route::any('/tag_update','TagController@Tag_update');
 Route::any('/tag_user','WecharController@tag_user');
 Route::any('/tag_sou','TagController@tag_sou');
-
+//自动回复类
 Route::any('/event','EventController@event');
+
+//素材
+Route::any('/resource','ResourceController@Resource');
+Route::any('/wechar/uplod_do','ResourceController@upload_do');
 
 
 

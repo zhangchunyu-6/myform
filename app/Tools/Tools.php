@@ -30,6 +30,24 @@ class Tools
 	  }
 		return $wechat_assess_token;
 	}
+	
+	public function wechar_curl_file($url,$path)
+    {
+        $curl=curl_init($url);
+        curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($curl,CURLOPT_SSL_VERIFYPEER,false);
+        curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,false);
+
+        curl_setopt($curl,CURLOPT_POST,true);
+        $data=[
+            'media'=>new \CURLFile(realpath($path)),
+        ];
+        curl_setopt($curl,CURLOPT_POSTFIELDS,$data);
+
+        $result=curl_exec($curl);
+        curl_close($curl);
+        return $result;
+    }
 
 
 	public function curl_post($url,$data)
@@ -44,17 +62,11 @@ class Tools
 
 			curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,false);
 
-
-
 			curl_setopt($curl,CURLOPT_POST,true);
-
-
 
 			curl_setopt($curl,CURLOPT_POSTFIELDS,$data);
 
 			$result = curl_exec($curl);
-
-
 
 			curl_close($curl);
 

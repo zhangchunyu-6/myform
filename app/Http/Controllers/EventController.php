@@ -32,14 +32,28 @@ class EventController extends Controller
             }
             //普通的信息发送
             if($xml_arr['MsgType']=='text'){
-                $cod ="欢迎来到我的公众号";
-                
+                $cod ="欢迎来到我的公众号 回复在吗有福利";
+             
           echo"<xml>
                 <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
                 <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
                 <CreateTime>".$xml_arr['CreateTime']."</CreateTime>
                 <MsgType><![CDATA[text]]></MsgType>
                 <Content><![CDATA[".$cod."]]></Content>
+              </xml>";
+            }
+
+            if($xml_arr['MsgType']=='在吗'){
+              $media_id="K3BH1WlREhi3cKRqx2gI9i1q-dZqCezx35wed4T2j2tWxGjLQf_w_-wqEZz9A8LD";
+              
+            echo "<xml>
+              <ToUserName><![CDATA[FromUserName]]></ToUserName>
+              <FromUserName><![CDATA[ToUserName]]></FromUserName>
+              <CreateTime>".time()."</CreateTime>
+              <MsgType><![CDATA[voice]]></MsgType>
+              <Voice>
+              <MediaId><![CDATA[".$media_id."]]></MediaId>
+              </Voice>
               </xml>";
             }
      }     
