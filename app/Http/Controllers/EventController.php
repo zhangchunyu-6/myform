@@ -44,6 +44,8 @@ class EventController extends Controller
                 </Voice>
                 </xml>";
               }
-          }     
+           $url="https://api.weixin.qq.com/cgi-bin/menu/create?access_token=".$tools->get_access_token;
+          dd($url);
+          }   
                                                                                                                                        
 }

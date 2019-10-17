@@ -31,7 +31,7 @@ class Tools
 		return $wechat_assess_token;
 	}
 	
-	public function wechar_curl_file($url,$path)
+	public function wechar_curl_file($url,$data)
     {
         $curl=curl_init($url);
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
@@ -39,9 +39,7 @@ class Tools
         curl_setopt($curl,CURLOPT_SSL_VERIFYHOST,false);
 
         curl_setopt($curl,CURLOPT_POST,true);
-        $data=[
-            'media'=>new \CURLFile(realpath($path)),
-        ];
+       
         curl_setopt($curl,CURLOPT_POSTFIELDS,$data);
 
         $result=curl_exec($curl);
