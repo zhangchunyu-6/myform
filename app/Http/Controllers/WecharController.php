@@ -52,6 +52,7 @@ class WecharController extends Controller
         ]; 
         $re=$tools->curl_post($url,json_encode($data,JSON_UNESCAPED_UNICODE));
         $result=\json_decode($re,true);
+        echo createMenu($result);
         
     }
 }
