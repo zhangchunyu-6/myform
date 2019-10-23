@@ -20,18 +20,19 @@ class EventController extends Controller
 
         $xml_arr = (array)$xml_obj;
 
-            if($xml_arr['MsgType']=='event' && $xml_arr['Event']=="subscribe"){
-                $wechar_user = $tools->get_wechar_user($xml_arr['FromUserName']);
+           if($xml_arr['MsgType'] == 'event' && $xml_arr['Event'] == 'subscribe'){
+               $wechar_user = $tools->get_wechar_user($xml_arr['FromUserName']);
+               //dd($wechar_user);
+               $msg = '欢迎'.$wechar_user['nickname'].'同学'.'，感谢您的关注';
 
-                $arr='你好'.$wechar_user['nickname'].',欢迎关注我!有福利';
-                echo "<xml>
-                <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
-                <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
-                <CreateTime>".$xml_arr['CreateTime']."</CreateTime>
-                <MsgType><![CDATA[".$xml_arr['MsgType']."]]></MsgType>
-                <Content><![CDATA[".$arr."]]></Content>
-              </xml>";
-            }
+                     echo "<xml>
+                           <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
+                          <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
+                          <CreateTime>".time()."</CreateTime>
+                          <MsgType><![CDATA[text]]></MsgType>
+                          <Content><![CDATA[".$msg."]]></Content>
+                          </xml>";
+      }
             //普通的信息发送
             if($xml_arr['MsgType']=='text'){
 
