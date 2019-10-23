@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tools\Tools;
 use App\Model\Openid;
+use App\Model\User;
 class EventController extends Controller
 {
 
@@ -24,11 +25,13 @@ class EventController extends Controller
                if($xml_arr['MsgType'] == 'event' && $xml_arr['Event'] == 'subscribe'){
                     //判断open表当前是否有openid
                     $openid_info= Openid::where(['openid'=>$xml_arr['FromUserName']])->first();
+
                     if(empty($openid_info)){
                         //首次关注
                         if(isset($xml_arr['Ticket'])){
                             //带参数
                             $share_code= explode("_",$xml_arr['EventKey'])[1];
+
                             Openid::insert([
                                 'uid'=>$share_code,
                                 'openid'=>$xml_arr['FromUserName'],
