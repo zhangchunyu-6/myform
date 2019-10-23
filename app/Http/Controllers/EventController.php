@@ -18,30 +18,30 @@ class EventController extends Controller
 
         $xml_arr = (array)$xml_obj;
 
-           if($xml_arr['MsgType'] == 'event' && $xml_arr['Event'] == 'subscribe'){
-               $wechar_user = $tools->get_wechar_user($xml_arr['FromUserName']);
-               $msg = '欢迎'.$wechar_user['nickname'].'同学'.'，感谢您的关注';
-
-                     echo "<xml>
-                           <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
-                          <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
-                          <CreateTime>".time()."</CreateTime>
-                          <MsgType><![CDATA[text]]></MsgType>
-                          <Content><![CDATA[".$msg."]]></Content>
-                          </xml>";
-      }
+//           if($xml_arr['MsgType'] == 'event' && $xml_arr['Event'] == 'subscribe'){
+//               $wechar_user = $tools->get_wechar_user($xml_arr['FromUserName']);
+//               $msg = '欢迎'.$wechar_user['nickname'].'同学'.'，感谢您的关注';
+//
+//                     echo "<xml>
+//                           <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
+//                          <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
+//                          <CreateTime>".time()."</CreateTime>
+//                          <MsgType><![CDATA[text]]></MsgType>
+//                          <Content><![CDATA[".$msg."]]></Content>
+//                          </xml>";
+//            }
             //普通的信息发送
-            if($xml_arr['MsgType']=='text' && $xml_arr['Content'] == '111'){
+//            if($xml_arr['MsgType']=='text' && $xml_arr['Content'] == '111'){
+//
+//                $media_id="您好 新的一天又要开始了 你努力了吗？";
+//                echo "<xml><ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
+//                <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
+//                <CreateTime>".time()."</CreateTime>
+//                <MsgType><![CDATA[voice]]></MsgType>
+//                <Voice><MediaId><![CDATA[".$media_id."]]></MediaId></Voice>
+//                </xml>";
+//              }
 
-                $media_id="您好 新的一天又要开始了 你努力了吗？";
-                echo "<xml><ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
-                <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
-                <CreateTime>".time()."</CreateTime>
-                <MsgType><![CDATA[voice]]></MsgType>
-                <Voice><MediaId><![CDATA[".$media_id."]]></MediaId></Voice>
-                </xml>";
-              }
-
-          }
+     }
 
 }
