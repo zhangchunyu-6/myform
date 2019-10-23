@@ -112,7 +112,42 @@ class Tools
         $re = file_get_contents($url);
         $result = json_decode($re,1);
         return $result;
-    }
+		}
+		
+		public function sortInfo($data,$parent_id=0)
+		{
+			$info=[];
+			foreach($data as $v){
+				if($v['parent_id']==$parent_id){
+					$son=sortInfo($data,$v['sort_id']);
+					$v['son']=$son;
+					$info[]=$v;
+				}
+			}
+			return $info;
+		}
+
+
+		public function fans()
+		{
+			$token=$this->get_access_token();
+			//dd($token); 
+			//        获取openid
+        $openid=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/get?access_token='.$token.'&next_openid=');
+				//dd($openid);
+				$re=json_decode($openid,1);
+       //dd($re);
+        $openid_list=[];
+        foreach ($re['data']['openid'] as $v)
+        {
+//            获取用户基本信息
+            $user_info=file_get_contents('https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->get_access_token().'&openid='.$v.'&lang=zh_CN');
+            $res=json_decode($user_info,1);
+     // dd($res);
+            $openid_list[]=$res;
+				}
+				return $openid_list;
+		}
 
 
 }

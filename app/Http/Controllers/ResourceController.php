@@ -21,7 +21,7 @@ class ResourceController extends Controller
     {
         return view('resource.html');
     }
-
+    //文件下载
     public function download(Tools $tools,Request $request)
     {
         $req=$request->all();
@@ -29,19 +29,21 @@ class ResourceController extends Controller
         $url="https://api.weixin.qq.com/cgi-bin/material/get_material?access_token=".$tools->get_access_token();
         $re =$tools->curl_post($url,json_encode(['media_id'=>$req['media_id']]));
         $result=\json_decode($re,1);
+        
         $time=array(
             "http"=>array(
                 'method'=>'GET',
                 'timeout'=>'3'
             ),
             );
+
         $context=\stream_context_create($time);
          $file_resource = file_get_contents($result['down_url'],false,$context,$context);
         //dd($file_resource);
         Storage::put('/wechar/video/232311111.jpg', $file_resource);
       
     }
-
+    //素材列表页
     public function resource_list(Tools $tools,Request $request)
     {
         //$model = new Resource;
@@ -61,7 +63,7 @@ class ResourceController extends Controller
         dd($result);
         
     }
-
+    //文件上传
     public function upload_do(Tools $tools,Request $request)
     {
         $req=$request->all();
@@ -111,9 +113,11 @@ class ResourceController extends Controller
         return "添加成功";
     }
 
+    
+
     /**
      * 公众号调用或第三方平台帮公众号调用对公众号的所有api调用（包括第三方帮其调用）次数进行清零：
-     */
+*/    
     public function clear_api(Tools $tools)
     {
         

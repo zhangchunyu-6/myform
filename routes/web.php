@@ -48,6 +48,20 @@ Route::any('/wechar/resource_list','ResourceController@resource_list');//素材�
 Route::any('/clear_api','ResourceController@clear_api');
 Route::any('/download','ResourceController@download');
 
+//无限级分类
+Route::any('/menu','MenuController@menu_create');
+
+//考试
+Route::any('/words','WordsController@words');
+Route::any('/word_do','WordsController@word_do');
+Route::any('/word_code','WordsController@word_code');
+
+
+//二维码
+Route::any('/wechar/list','ListController@wecharindex');
+Route::any('/save_code','ListController@save_code');
+
+
 
 
 
