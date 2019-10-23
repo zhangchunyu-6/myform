@@ -30,16 +30,16 @@ class EventController extends Controller
                           </xml>";
             }
             //普通的信息发送
-//            if($xml_arr['MsgType']=='text' && $xml_arr['Content'] == '111'){
-//
-//                $media_id="您好 新的一天又要开始了 你努力了吗？";
-//                echo "<xml><ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
-//                <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
-//                <CreateTime>".time()."</CreateTime>
-//                <MsgType><![CDATA[voice]]></MsgType>
-//                <Voice><MediaId><![CDATA[".$media_id."]]></MediaId></Voice>
-//                </xml>";
-//              }
+            if($xml_arr['MsgType']=='text' && $xml_arr['Content'] == '111'){
+
+                $media_id="您好 新的一天又要开始了 你努力了吗？";
+                echo "<xml><ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
+                <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
+                <CreateTime>".time()."</CreateTime>
+                <MsgType><![CDATA[voice]]></MsgType>
+                <Content><![CDATA[".$media_id."]]></Content>
+                </xml>";
+              }
 
      }
 
