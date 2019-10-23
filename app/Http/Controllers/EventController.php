@@ -33,12 +33,13 @@ class EventController extends Controller
             if($xml_arr['MsgType']=='text' && $xml_arr['Content'] == '111'){
 
                 $media_id="您好 新的一天又要开始了 你努力了吗？";
-                echo "<xml><ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
-                <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
-                <CreateTime>".time()."</CreateTime>
-                <MsgType><![CDATA[voice]]></MsgType>
-                <Content><![CDATA[".$media_id."]]></Content>
-                </xml>";
+                echo "<xml>
+                           <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
+                          <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
+                          <CreateTime>".time()."</CreateTime>
+                          <MsgType><![CDATA[text]]></MsgType>
+                          <Content><![CDATA[".$media_id."]]></Content>
+                          </xml>";
               }
 
      }
