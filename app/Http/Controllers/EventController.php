@@ -21,13 +21,13 @@ class EventController extends Controller
         $xml_obj = simplexml_load_string($info,'SimpleXMLElement',LIBXML_NOCDATA);
 
         $xml_arr =(array)$xml_obj;
-
+      //  dd($xml_arr);
                if($xml_arr['MsgType'] == 'event' && $xml_arr['Event'] == 'subscribe'){
                     //判断open表当前是否有openid
                     $openid_info= Openid::where(['openid'=>$xml_arr['FromUserName']])->first();
-
                     if(empty($openid_info)){
                         //首次关注
+                        //dd(111);
                         if(isset($xml_arr['Ticket'])){
                             //带参数
                             $share_code= explode("_",$xml_arr['EventKey'])[1];
@@ -38,7 +38,6 @@ class EventController extends Controller
                                 'subscribe'=>1
                             ]);
                             User::where(['id'=>$share_code])->increment('share_num',1);//加业绩
-
                         }else{
                             //普通关注；
                             Openid::insert([
