@@ -8,8 +8,6 @@ class EventController extends Controller
 {
     public function event(Tools $tools)
     {
-
-
         $info= file_get_contents("php://input");
 
         file_put_contents(storage_path('logs/wechar/'.date('Y-m-d').'.log'),"<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<\n",FILE_APPEND);
@@ -22,7 +20,6 @@ class EventController extends Controller
 
            if($xml_arr['MsgType'] == 'event' && $xml_arr['Event'] == 'subscribe'){
                $wechar_user = $tools->get_wechar_user($xml_arr['FromUserName']);
-               //dd($wechar_user);
                $msg = '欢迎'.$wechar_user['nickname'].'同学'.'，感谢您的关注';
 
                      echo "<xml>
@@ -34,7 +31,7 @@ class EventController extends Controller
                           </xml>";
       }
             //普通的信息发送
-            if($xml_arr['MsgType']=='text'){
+            if($xml_arr['MsgType']=='text' && $xml_arr['Content'] == '111'){
 
                 $media_id="您好 新的一天又要开始了 你努力了吗？";
                 echo "<xml><ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
