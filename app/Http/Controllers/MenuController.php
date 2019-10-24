@@ -221,7 +221,7 @@ class MenuController extends Controller
 
         $result = json_decode($re, 1);
 
-
+        dd($result);
 
     }
 }
