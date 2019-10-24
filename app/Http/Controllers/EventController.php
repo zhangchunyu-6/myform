@@ -21,19 +21,7 @@ class EventController extends Controller
         $xml_obj = simplexml_load_string($info,'SimpleXMLElement',LIBXML_NOCDATA);
 
         $xml_arr =(array)$xml_obj;
-        dd($xml_arr);
-
-             if($xml_arr['Event']=='CLICK'){
-                echo "<xml>
-                    <ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
-                    <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
-                    <CreateTime>".time()."</CreateTime>
-                    <MsgType><![CDATA[event]]></MsgType>
-                    <Event><![CDATA[CLICK]]></Event>
-                    <EventKey><![CDATA[www.qq.com]]></EventKey>
-                    <MenuId>".$xml_arr['MenuId']."</MenuId>  
-                    </xml>";
-             }
+       // dd($xml_arr);
 
                if($xml_arr['MsgType'] == 'event' && $xml_arr['Event'] == 'subscribe'){
                     //判断open表当前是否有openid
