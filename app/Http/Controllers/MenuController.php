@@ -132,7 +132,7 @@ class MenuController extends Controller
 
         $menu = Menu::where(['pid' => 0])->get();
 
-//        dd($menu);
+      //  dd($menu);
 
         $data = [];
 
@@ -211,7 +211,7 @@ class MenuController extends Controller
                 $data['button'][] = $menu_arr;
             }
         }
-//        echo "<pre>";
+       echo "<pre>";
 
 //        print_r($data);die;
 
