@@ -24,8 +24,9 @@ Route::get('/login',function(){
     return view('login');
 });
 Route::get('/wechar_login','LoginController@wechar_login');
-Route::get('/wechar_code','LoginController@code');
-Route::get('/wechar_index','LoginController@index');
+
+Route::get('/wechar_code','LoginController@wechar_code');
+//Route::get('/wechar_index','LoginController@index');
 
 //标签管理
 
@@ -50,7 +51,7 @@ Route::any('/download','ResourceController@download');
 
 //无限级分类
 Route::any('/menu','MenuController@menu_create');
-
+Route::any('/menu_do','MenuController@menu_do');
 //考试
 Route::any('/words','WordsController@words');
 Route::any('/word_do','WordsController@word_do');
