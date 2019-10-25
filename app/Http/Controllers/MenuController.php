@@ -15,6 +15,7 @@ class MenuController extends Controller
     }
 
 
+
     /**
      * 自定义菜单视图
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

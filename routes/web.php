@@ -23,10 +23,14 @@ Route::get('/index','StudentController@index');
 Route::get('/login',function(){
     return view('login');
 });
+
+Route::get('/admin_create',function(){
+        return view('admin.create');
+});
 Route::get('/wechar_login','LoginController@wechar_login');
 
 Route::get('/wechar_code','LoginController@wechar_code');
-//Route::get('/wechar_index','LoginController@index');
+Route::get('/wechar_index','LoginController@index');
 
 //标签管理
 
@@ -62,6 +66,9 @@ Route::any('/word_code','WordsController@word_code');
 //二维码
 Route::any('/wechar/list','ListController@wecharindex');
 Route::any('/save_code','ListController@save_code');
+
+//考试
+Route::any('/Admin/create','AdminController@create');
 
 
 

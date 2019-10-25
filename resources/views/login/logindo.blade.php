@@ -10,6 +10,6 @@
 <script src="/jquery.js"></script>
 <script>
     $('button').click(function () {
-        window.location.href='/login_do'
+        window.location.href='/wechar_login'
     })
 </script>

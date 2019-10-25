@@ -15,7 +15,7 @@ class LoginController extends Controller
         $this->requers=$request;
     }
     //登陆视图页面
-    public function index()
+       public function index()
 
     {
         return view('login.logindo');
@@ -79,7 +79,8 @@ class LoginController extends Controller
 //        dd($use);
         $us=json_decode($use,1);
      //  dd($us['data']['openid'])
-        dd(已经登录);
+        //dd(已经登录);
         // return view('Login.user',['users'=>$us['data']['openid']]);
+        return  redirect('/admin_create');
     }
 }
