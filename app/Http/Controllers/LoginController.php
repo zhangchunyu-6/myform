@@ -81,6 +81,6 @@ class LoginController extends Controller
      //  dd($us['data']['openid'])
         //dd(已经登录);
         // return view('Login.user',['users'=>$us['data']['openid']]);
-        return  redirect('/admin_create');
+        return  redirect('http://116.62.48.100/admin_create');
     }
 }
