@@ -1,9 +1,10 @@
+@extends('layout.layout')
 <!doctype html>
 
 <html lang="en">
 <body>
-<center>
-    <button>微信网页授权</button>
+<center style="margin-top:200px;">
+    <button type="button" class="btn btn-success">点击授权登陆</button>
 </center>
 </body>
 </html>
