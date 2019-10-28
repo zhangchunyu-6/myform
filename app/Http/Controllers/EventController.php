@@ -21,19 +21,21 @@ class EventController extends Controller
         $xml_obj = simplexml_load_string($info,'SimpleXMLElement',LIBXML_NOCDATA);
 
         $xml_arr =(array)$xml_obj;
-       // dd($xml_arr);
+       //dd($xml_arr);
 
                if($xml_arr['MsgType'] == 'event' && $xml_arr['Event'] == 'subscribe'){
                     //判断open表当前是否有openid
 
                     $openid_info= Openid::where(['openid'=>$xml_arr['FromUserName']])->first();
-
+                    //dd($openid_info);
                     if(empty($openid_info)){
                         //首次关注
+
                         if(isset($xml_arr['Ticket'])){
                             //带参数
+                          //  dd(111);
                             $share_code= explode("_",$xml_arr['EventKey'])[1];
-
+                            //dd($share_code);
                             Openid::insert([
                                 'uid'=>$share_code,
                                 'openid'=>$xml_arr['FromUserName'],
@@ -61,8 +63,8 @@ class EventController extends Controller
                               </xml>";
                       }
                     //普通的信息发送
-                    if($xml_arr['MsgType']=='text' && $xml_arr['Content'] == '111'){
-                        $media_id="您好 新的一天又要开始了 你努力了吗？";
+                    if($xml_arr['MsgType']=='text' && $xml_arr['Content'] == '今天天气怎么样'){
+                        $media_id="今天天气不是很好";
                         echo "<xml><ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
                         <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
                         <CreateTime>".time()."</CreateTime>h44-h
