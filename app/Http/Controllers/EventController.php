@@ -30,8 +30,6 @@ class EventController extends Controller
 
                     if(empty($openid_info)){
                         //首次关注
-
-                        //dd(111);
                         if(isset($xml_arr['Ticket'])){
                             //带参数
                             $share_code= explode("_",$xml_arr['EventKey'])[1];
