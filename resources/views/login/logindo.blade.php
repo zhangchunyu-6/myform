@@ -4,7 +4,7 @@
 <html lang="en">
 <body>
 <center style="margin-top:200px;">
-    <button type="button" class="btn btn-success">点击授权登陆</button>
+    <button type="button" class="btn btn-success  btn-lg btn-block">点击授权登陆</button>
 </center>
 </body>
 </html>

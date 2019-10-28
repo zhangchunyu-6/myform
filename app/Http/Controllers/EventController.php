@@ -25,9 +25,12 @@ class EventController extends Controller
 
                if($xml_arr['MsgType'] == 'event' && $xml_arr['Event'] == 'subscribe'){
                     //判断open表当前是否有openid
+
                     $openid_info= Openid::where(['openid'=>$xml_arr['FromUserName']])->first();
+
                     if(empty($openid_info)){
                         //首次关注
+
                         //dd(111);
                         if(isset($xml_arr['Ticket'])){
                             //带参数
@@ -64,7 +67,7 @@ class EventController extends Controller
                         $media_id="您好 新的一天又要开始了 你努力了吗？";
                         echo "<xml><ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
                         <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
-                        <CreateTime>".time()."</CreateTime>
+                        <CreateTime>".time()."</CreateTime>h44-h
                         <MsgType><![CDATA[text]]></MsgType>
                         <Content><![CDATA[".$media_id."]]></Content>
                         </xml>";
