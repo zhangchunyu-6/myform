@@ -67,7 +67,7 @@ class EventController extends Controller
                         $media_id="今天天气不是很好";
                         echo "<xml><ToUserName><![CDATA[".$xml_arr['FromUserName']."]]></ToUserName>
                         <FromUserName><![CDATA[".$xml_arr['ToUserName']."]]></FromUserName>
-                        <CreateTime>".time()."</CreateTime>h44-h
+                        <CreateTime>".time()."</CreateTime>
                         <MsgType><![CDATA[text]]></MsgType>
                         <Content><![CDATA[".$media_id."]]></Content>
                         </xml>";
