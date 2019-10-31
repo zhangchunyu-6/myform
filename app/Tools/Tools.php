@@ -160,7 +160,7 @@ class Tools
 
     public function wechar_login()
     {
-
+        echo 1234;die;
         $redirect_uri=urlencode(env('APP_URL').'/wechar_code');
 //        $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAR_APPID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';        //            // dd($url);
         $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=".env('WECHAR_APPID')."&redirect_uri=".$redirect_uri."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
