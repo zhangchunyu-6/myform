@@ -8,13 +8,15 @@ class BstudentController extends Controller
 {
     public function student_index(Request $request,Tools $tools)
     {
+        $openid=$request->all;
 
         echo $tools->index();die;
     }
 
-    public function student_list()
+    public function student_list(Tools $tools,Request $request)
     {
-
-        return view('bstudent.create');
+        $openlist=$tools->fans();
+        //dd($openlist);
+        return view('bstudent.create',['list'=>$openlist]);
     }
 }

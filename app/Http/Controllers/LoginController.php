@@ -27,8 +27,10 @@ class LoginController extends Controller
     {
 
         $redirect_uri=urlencode(env('APP_URL').'/wechar_code');
+
 //        $url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WECHAR_APPID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';        //            // dd($url);
         $url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=".env('WECHAR_APPID')."&redirect_uri=".$redirect_uri."&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+       //dd($url);
         header('location:'.$url);
 
     }
@@ -78,7 +80,8 @@ class LoginController extends Controller
         $use=$this->tools->curl_get($ur);
 //        dd($use);
         $us=json_decode($use,1);
-     //  dd($us['data']['openid'])
+     //  return $us;
+        //dd($us['data']['openid']);
         //dd(已经登录);
         // return view('Login.user',['users'=>$us['data']['openid']]);
         return  redirect('Student/list');

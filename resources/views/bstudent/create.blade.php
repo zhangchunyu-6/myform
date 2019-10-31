@@ -9,27 +9,35 @@
     <title>Document</title>
 </head>
 <body>
-            <table align="center" style="margin-top:50px;" width="500">
+            <table align="center" style="margin-top:50px;" width="500" border="border">
+                @foreach($list as $v)
                 <tr >
-                    <td>1</td>
+                    <td><img src="{{$v['headimgurl']}}" alt=""></td>
                 </tr>
+                @endforeach
 
                 <tr>
                     <td>性别</td>
                 </tr>
 
+                @foreach($list as $v)
                 <tr>
-                    <td>1</td>
+                    <td>@if ($v['sex']==1)
+                            男
+                        @else
+                            女
+                        @endif</td>
                 </tr>
+                @endforeach
 
                 <tr>
                     <td>昵称</td>
                 </tr>
-
+                @foreach($list as $v)
                 <tr>
-                    <td>1</td>
+                    <td>{{$v['nickname']}}</td>
                 </tr>
-
+                @endforeach
             </table>
 </body>
 </html>
