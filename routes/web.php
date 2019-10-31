@@ -70,6 +70,10 @@ Route::any('/save_code','ListController@save_code');
 //考试
 Route::any('/Admin/create','AdminController@create');
 
+//月考
+Route::any('Student/index','BstudentController@student_index');
+Route::any('Student/list','BstudentController@student_list');
+
 
 
 

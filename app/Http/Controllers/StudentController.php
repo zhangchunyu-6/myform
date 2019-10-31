@@ -15,7 +15,7 @@ class StudentController extends Controller
         $this->tools = $tools;
     }
 
-	
+
 
 	 public function index(Request $request,Tools $tools)
 
@@ -56,7 +56,7 @@ class StudentController extends Controller
 
     }
 
-	
-	
-	
+
+
+
 }
